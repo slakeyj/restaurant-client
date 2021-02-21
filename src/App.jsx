@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { RestaurantsContextProvider } from './context/RestaurantsContext';
 import Home from './pages/Home';
 import RestaurantDetails from './pages/RestaurantDetails';
-import UpdateRestaurant from './pages/UpdateRestaurant';
+import UpdatePage from './pages/UpdatePage';
 const App = () => {
   return (
     <RestaurantsContextProvider>
@@ -14,7 +14,7 @@ const App = () => {
             <Route
               exact
               path='/restaurants/:id/update'
-              component={UpdateRestaurant}
+              component={UpdatePage}
             />
             <Route
               exact
