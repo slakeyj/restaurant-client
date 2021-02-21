@@ -2,13 +2,12 @@ import React, { useContext, useEffect } from 'react';
 import RestaurantFinder from '../apis/RestaurantFinder';
 import { RestaurantsContext } from '../context/RestaurantsContext';
 
-const RestaurantList = props => {
+const RestaurantList = () => {
   const { restaurants, setRestaurants } = useContext(RestaurantsContext);
 
   const fetchData = async () => {
     try {
       const response = await RestaurantFinder.get('/');
-      console.log('response', response);
       setRestaurants(response.data.data.restaurant);
     } catch (err) {
       console.log(err);
@@ -18,6 +17,16 @@ const RestaurantList = props => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleDelete = async id => {
+    try {
+      const response = RestaurantFinder.delete(`/${id}`);
+      setRestaurants(restaurants.filter(restaurant => restaurant.id !== id));
+      console.log('delete response', response);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className='list-group'>
@@ -46,7 +55,12 @@ const RestaurantList = props => {
                   </td>
                   <td>
                     {' '}
-                    <button className='btn btn-danger'>Delete</button>
+                    <button
+                      onClick={() => handleDelete(restaurant.id)}
+                      className='btn btn-danger'
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               );
