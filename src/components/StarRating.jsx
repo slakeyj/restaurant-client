@@ -10,9 +10,9 @@ const StarRating = ({ rating }) => {
     if (i <= rating) {
       stars.push(<StarIcon color='primary' />);
     } else if (i === Math.ceil(rating) && !Number.isInteger(rating)) {
-      stars.push(<StarHalfIcon />);
+      stars.push(<StarHalfIcon color='primary' />);
     } else {
-      stars.push(<StarOutlineIcon />);
+      stars.push(<StarOutlineIcon color='primary' />);
     }
   }
   return <>{stars}</>;
