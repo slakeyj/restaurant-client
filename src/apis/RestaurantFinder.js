@@ -7,7 +7,7 @@ import axios from 'axios';
 // if we are in development, use baseurl = http://localhost:3005/api/v1/restaurants
 
 const baseURL =
-  process.env.NODE_ENV === 'prudction'
+  process.env.NODE_ENV === 'production'
     ? 'api/v1/restaurants'
     : 'http://localhost:3005/api/v1/restaurants';
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import RestaurantFinder from '../apis/RestaurantFinder';
+import restaurantFinder from '../apis/restaurantFinder';
 
 const UpdateRestaurant = () => {
   const { id } = useParams();
@@ -11,7 +11,7 @@ const UpdateRestaurant = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await RestaurantFinder.get(`/${id}`);
+      const response = await restaurantFinder.get(`/${id}`);
       console.log('update response', response);
       setName(response.data.data.restaurant.name);
       setLocation(response.data.data.restaurant.location);
@@ -22,7 +22,7 @@ const UpdateRestaurant = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    await RestaurantFinder.put(`/${id}`, {
+    await restaurantFinder.put(`/${id}`, {
       name,
       location,
       price_range: priceRange,

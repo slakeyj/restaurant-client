@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import RestaurantFinder from '../apis/RestaurantFinder';
+import restaurantFinder from '../apis/restaurantFinder';
 import { RestaurantsContext } from '../context/RestaurantsContext';
 import { useHistory } from 'react-router-dom';
 import StarRating from './StarRating';
@@ -10,7 +10,7 @@ const RestaurantList = () => {
 
   const fetchData = async () => {
     try {
-      const response = await RestaurantFinder.get('/');
+      const response = await restaurantFinder.get('/');
       setRestaurants(response.data.data.restaurant);
     } catch (err) {
       console.log(err);
@@ -25,7 +25,7 @@ const RestaurantList = () => {
     // keeps event from hitting the row event to go to details page
     e.stopPropagation();
     try {
-      const response = RestaurantFinder.delete(`/${id}`);
+      const response = restaurantFinder.delete(`/${id}`);
       setRestaurants(restaurants.filter(restaurant => restaurant.id !== id));
       console.log('delete response', response);
     } catch (err) {

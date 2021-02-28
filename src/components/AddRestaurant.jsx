@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
-import RestaurantFinder from '../apis/RestaurantFinder';
+import restaurantFinder from '../apis/restaurantFinder';
 import { RestaurantsContext } from '../context/RestaurantsContext';
 
 const AddRestaurant = () => {
-  const { addRestaurants } = useContext(RestaurantsContext);
+  const { setRestaurants } = useContext(RestaurantsContext);
   const [name, setName] = useState('');
   const [location, setLocation] = useState('');
   const [priceRange, setPriceRange] = useState('Price Range');
@@ -11,12 +11,14 @@ const AddRestaurant = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const response = await RestaurantFinder.post('/', {
+      await restaurantFinder.post('/', {
         name,
         location,
         price_range: priceRange,
       });
-      addRestaurants(response.data.data.restaurant);
+      const response = await restaurantFinder.get('/');
+      setRestaurants(response.data.data.restaurant);
+
       console.log('response', response);
     } catch (err) {
       console.log(err);

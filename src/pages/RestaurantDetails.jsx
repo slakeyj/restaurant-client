@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import RestaurantFinder from '../apis/RestaurantFinder';
+import restaurantFinder from '../apis/restaurantFinder';
 import AddReview from '../components/AddReview';
 import Reviews from '../components/Reviews';
 import StarRating from '../components/StarRating';
@@ -15,7 +15,7 @@ const RestaurantDetails = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await RestaurantFinder.get(`/${id}`);
+        const response = await restaurantFinder.get(`/${id}`);
         console.log('response.data.data', response);
         setSelectedRestaurant(response.data.data);
       } catch (err) {
