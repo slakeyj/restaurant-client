@@ -11,14 +11,13 @@ const AddReview = () => {
   const [rating, setRating] = useState('Rating');
 
   const handleReviewSubmit = async e => {
-    e.preventDefault();
-
     try {
       await restaurantFinder.post(`${id}/add-review`, {
         name,
         review: reviewText,
         rating,
       });
+      console.log('location.pathname', location.pathname);
       history.push('/');
       history.push(location.pathname);
     } catch (err) {

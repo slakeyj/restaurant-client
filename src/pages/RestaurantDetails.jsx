@@ -16,7 +16,6 @@ const RestaurantDetails = () => {
     const fetchData = async () => {
       try {
         const response = await restaurantFinder.get(`/${id}`);
-        console.log('response.data.data', response);
         setSelectedRestaurant(response.data.data);
       } catch (err) {
         console.log(err);
@@ -25,6 +24,7 @@ const RestaurantDetails = () => {
     fetchData();
   }, []);
 
+  // where should I route to /:id/add-review?
   return (
     <div>
       {selectedRestaurant && (

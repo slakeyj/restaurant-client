@@ -25,9 +25,9 @@ const RestaurantList = () => {
     // keeps event from hitting the row event to go to details page
     e.stopPropagation();
     try {
-      const response = restaurantFinder.delete(`/${id}`);
+      restaurantFinder.delete(`/${id}`);
       setRestaurants(restaurants.filter(restaurant => restaurant.id !== id));
-      console.log('delete response', response);
+      // console.log('delete response', response);
     } catch (err) {
       console.log(err);
     }

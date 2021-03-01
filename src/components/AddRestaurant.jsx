@@ -19,7 +19,7 @@ const AddRestaurant = () => {
       const response = await restaurantFinder.get('/');
       setRestaurants(response.data.data.restaurant);
 
-      console.log('response', response);
+      // console.log('response', response);
     } catch (err) {
       console.log(err);
     }
